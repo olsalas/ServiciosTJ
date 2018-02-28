@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Material;
+use app\models\Factura;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MaterialController implements the CRUD actions for Material model.
+ * FacturaController implements the CRUD actions for Factura model.
  */
-class MaterialController extends Controller
+class FacturaController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,13 +30,13 @@ class MaterialController extends Controller
     }
 
     /**
-     * Lists all Material models.
+     * Lists all Factura models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Material::find(),
+            'query' => Factura::find(),
         ]);
 
         return $this->render('index', [
@@ -44,15 +44,9 @@ class MaterialController extends Controller
         ]);
     }
 
-    public function actionMateriales()
-    {
-         $materiales = Material::find()->orderBy(['descripcion' => SORT_ASC])->all();
-
-    }
-
     /**
-     * Displays a single Material model.
-     * @param string $id
+     * Displays a single Factura model.
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -64,16 +58,16 @@ class MaterialController extends Controller
     }
 
     /**
-     * Creates a new Material model.
+     * Creates a new Factura model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Material();
+        $model = new Factura();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->codigo]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -82,9 +76,9 @@ class MaterialController extends Controller
     }
 
     /**
-     * Updates an existing Material model.
+     * Updates an existing Factura model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -93,7 +87,7 @@ class MaterialController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->codigo]);
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -102,9 +96,9 @@ class MaterialController extends Controller
     }
 
     /**
-     * Deletes an existing Material model.
+     * Deletes an existing Factura model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -116,15 +110,15 @@ class MaterialController extends Controller
     }
 
     /**
-     * Finds the Material model based on its primary key value.
+     * Finds the Factura model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return Material the loaded model
+     * @param integer $id
+     * @return Factura the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Material::findOne($id)) !== null) {
+        if (($model = Factura::findOne($id)) !== null) {
             return $model;
         }
 

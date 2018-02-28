@@ -34,12 +34,11 @@ class Factura extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'fecha_generacion', 'fecha_corte', 'Cliente_nit'], 'required'],
-            [['id', 'Cliente_nit'], 'integer'],
+            [['fecha_generacion', 'fecha_corte', 'Cliente_nit'], 'required'],
             [['fecha_corte'], 'safe'],
+            [['Cliente_nit'], 'integer'],
             [['subtototal', 'iva', 'total'], 'number'],
             [['fecha_generacion'], 'string', 'max' => 45],
-            [['id'], 'unique'],
             [['Cliente_nit'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['Cliente_nit' => 'nit']],
         ];
     }

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Remision;
+use app\models\Cliente;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -66,12 +67,16 @@ class RemisionController extends Controller
     {
         $model = new Remision();
 
+        //Obtener Clientes Registrados
+        $clientes = Cliente::find()->orderBy(['nombre' => SORT_ASC])->all();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'clientes' => $clientes,
         ]);
     }
 

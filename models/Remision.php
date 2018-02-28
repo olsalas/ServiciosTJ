@@ -49,7 +49,7 @@ class Remision extends \yii\db\ActiveRecord
             'id' => 'ID',
             'tipo' => 'Tipo',
             'fecha' => 'Fecha',
-            'Cliente_nit' => 'Cliente Nit',
+            'Cliente_nit' => 'Cliente',
         ];
     }
 
@@ -72,7 +72,7 @@ class Remision extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getClienteNit()
+    public function getCliente()
     {
         return $this->hasOne(Cliente::className(), ['nit' => 'Cliente_nit']);
     }
